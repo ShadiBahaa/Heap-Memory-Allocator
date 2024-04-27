@@ -39,7 +39,7 @@ To test the functionality of the heap memory allocator, feel free to change anyt
 1. Compile the test program `test.c` like the following:
    ```bash
    # static:
-   gcc test.c libhmm.a --static
+   gcc test.c libhmm.a -o test.exe --static
    # dynamic:
    gcc -o test.exe test.c -L. -lhmm
    ````
