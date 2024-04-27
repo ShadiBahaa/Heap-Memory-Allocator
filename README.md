@@ -38,6 +38,9 @@ To test the functionality of the heap memory allocator, feel free to change anyt
 
 1. Compile the test program `test.c` like the following:
    ```bash
+   # static:
+   gcc test.c libhmm.a --static
+   # dynamic:
    gcc -o test.exe test.c -L. -lhmm
    ````
 2. if you are using dynamic library version, run this command:
