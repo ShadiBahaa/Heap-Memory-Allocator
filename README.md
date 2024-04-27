@@ -34,7 +34,7 @@ To generate the heap memory allocator as either a static or dynamic library, you
   ```
 ## Testing Procedure
 
-To test the functionality of the heap memory allocator, follow these steps:
+To test the functionality of the heap memory allocator, feel free to change anything in test.c parameters,then follow these steps:
 
 1. Compile the test program `test.c` like the following:
    ```bash
