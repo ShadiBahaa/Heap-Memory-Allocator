@@ -48,4 +48,9 @@ To test the functionality of the heap memory allocator, feel free to change anyt
    ```bash
    ./run_executable.sh test.exe
    ```
-   
+## Additional Notes
+
+- Adjust the parameters such as `NUM_OPERATIONS` and `MAX_SIZE` in `test.c` according to your testing requirements.
+- Ensure that your system supports the `sbrk` system call for dynamic memory allocation.
+- Refer to the presentation and flowcharts provided in the repository for a detailed overview of the project structure and functionality.
+
