@@ -69,7 +69,9 @@ static void HMMremove_free_block(mem_chunk_t *block)
     if (block == NULL)
         return;
         // Calculate the index for the block based on its size.
-
+    if (block->is_added == 0){
+        return;
+    }
     size_t cur_size = block->size;
     size_t idx = (cur_size / ALIGNMENT) - 1;
         // If the index is within bounds, traverse the free list to remove the block.
@@ -84,7 +86,7 @@ static void HMMremove_free_block(mem_chunk_t *block)
             {
                 // Update flags and sizes accordingly.
                 current->is_added = 0;
-                current_free_size -= current->size;
+                current_free_size -= (current->size  + sizeof(mem_chunk_t));
                 if (prev)
                 {
                     prev->next_free = current->next_free;
@@ -126,9 +128,9 @@ static void HMMadd_free_block(mem_chunk_t *block)
 
     if (idx < MULTIPLES_MAX)
     {
-        if (HMMis_block_found(block))
+        if (block->is_added == 1)
             return;
-        current_free_size+=block->size;
+        current_free_size+=(block->size + sizeof(mem_chunk_t));
         block->is_added = 1;
         if (block_freq[idx] == NULL)
         {
@@ -156,7 +158,7 @@ static mem_chunk_t *HMMget_free_block(size_t size)
         if (block_freq[idx])
         {
             mem_chunk_t *ret = block_freq[idx];
-            current_free_size-=ret->size;
+            current_free_size-=(ret->size + sizeof(mem_chunk_t));
             ret->is_added = 0;
             block_freq[idx] = block_freq[idx]->next_free;
             return ret;
